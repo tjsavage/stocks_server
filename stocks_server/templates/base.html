@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB">
+<head>
+	{% include 'head.html' %}
+</head>
+<body>
+
+<div id="header">
+	{% include 'header.html' %}
+</div>
+<div class="colmask threecol">
+	<div class="colmid">
+		<div class="colleft">
+		    {% block col1 %}
+			<div class="col1">
+			    {% block content %}
+				<!-- Column 1 start -->
+				<!-- Column 1 end -->
+				{% endblock %}
+			</div>
+			{% endblock %}
+			{% block col2 %}
+			<div class="col2">
+				<!-- Column 2 start -->
+				{% block col-left %}
+				{% endblock %}
+				<!-- Column 2 end -->
+			</div>
+			{% endblock %}
+			{% block col3 %}
+			<div class="col3">
+				<!-- Column 3 start -->
+				{% block col-right %}
+				{% endblock %}
+				<!-- Column 3 end -->
+			</div>
+			{% endblock %}
+		</div>
+	</div>
+</div>
+<div id="footer">
+</div>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for portfolio in portfolios %}
+<a href="/portfolio/{{portfolio.pk}}/">{{ portfolio.name }}</a>
+{% endfor %}
+{% endblock %}

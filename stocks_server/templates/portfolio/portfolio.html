@@ -1,0 +1,6 @@
+{% extends 'base_menuleft.html' %}
+
+{% block content %}
+<h2>{{ portfolio.name }}</h2>
+<h3>${{ portfolio.current_value|floatformat:2 }}</h3>
+{% endblock %}
