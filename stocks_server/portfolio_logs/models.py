@@ -11,7 +11,8 @@ class PortfolioSnapshot(models.Model):
         return PositionSnapshot.objects.filter(portfolio_snapshot=self.pk)
         
     def to_json(self):
-        json = "{'portfolio_id':%d, 'date':'%s', 'value':%f}" % (self.pk, str(self.date), self.value)
+        json = "{'portfolio_id':%d, 'snapshot_id':%d, 'date':'%s', 'value':%f}" % (self.portfolio.pk, self.pk, str(self.date), self.value)
+        return json
     
 class PositionSnapshot(models.Model):
     date = models.DateTimeField(auto_now_add=True)
@@ -24,10 +25,10 @@ class PositionSnapshot(models.Model):
         
 
 def create_snapshot(portfolio):
-    portfolio_snapshot = PortfolioSnapshot(portfolio=portfolio.pk, value=portfolio.current_value())
+    portfolio_snapshot = PortfolioSnapshot(portfolio=portfolio, value=portfolio.current_value())
     portfolio_snapshot.save()
     for position in portfolio.positions():
-        position = PositionSnapshot(shares=position.shares,share_price=position.current_price(), portfolio_snapshot=portfolio_snapshot.pk)
+        position = PositionSnapshot(shares=position.shares,share_price=position.current_value(), portfolio_snapshot=portfolio_snapshot)
         position.save()
     
     return portfolio_snapshot

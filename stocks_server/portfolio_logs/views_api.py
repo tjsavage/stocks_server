@@ -9,10 +9,9 @@ def portfolio(request, portfolio_id):
     
     json = "{["
     for snapshot in portfolio_snapshots:
-        json += snapshot.to_json
-        if snapshot != portfolio_snapshots[-1]:
-            json += ","
-    json += "]}"
+        json += snapshot.to_json()
+        json += ","
+    json = json[:-1] + "]}"
     
     return HttpResponse(json)
     

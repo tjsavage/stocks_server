@@ -6,7 +6,6 @@ from pystockquotes import quotes
 
 def index(request, symbol):
     info = quotes.get_all(symbol)
-    print info
     return HttpResponse(str(info))
     
 def current_price(request, symbol):
